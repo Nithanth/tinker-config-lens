@@ -42,6 +42,35 @@ effort 0.2 is the efficient frontier point: 96.7% accuracy at $0.061/run —
 matching 0.7's accuracy at half its cost, and beating 0.99's realized accuracy
 at ~1/5 its cost *and* none of its truncation risk at sane budgets.
 
+## The plateau is task-dependent: AIME 2026 (uncontaminated)
+
+The easy-math plateau is a property of the task, not the knob. On
+**AIME 2026** (30 problems, MathArena source — postdates plausible Inkling
+training cutoffs, unlike aime_2025 which TML reports on), `max_tokens=32768`:
+
+| effort | accuracy | ~gen tok | hit 32k cap | **real wrong** |
+|--------|----------|----------|-------------|----------------|
+| 0.0    | 46.7%    | 3,662    | 0           | **16**         |
+| 0.2    | 66.7%    | 5,472    | 2           | **8**          |
+| 0.7    | **90.0%**| 6,214    | 0           | **3**          |
+| 0.9    | **90.0%**| 13,877   | 1           | **2**          |
+| 0.99   | 76.7%    | 21,246   | 6           | **1**          |
+
+Two clean facts:
+
+1. **Effort scaling is real on hard problems.** 0.0→0.7 gains +43pts
+   (paired Δ CI95 [-0.60,-0.27]); genuine wrong-answer count is *monotonically
+   decreasing*: 16 → 8 → 3 → 2 → 1. Effort works exactly as designed.
+2. **Observed accuracy is still non-monotonic** (0.99: 76.7% < 0.7/0.9: 90%)
+   entirely because 6/7 of its failures hit even a 32k budget — at maximum
+   effort, Inkling-Small's deliberation can exceed a 32k generation budget on
+   ~20% of AIME problems. The runaway tail is real.
+
+So the general claim: effort saturates early on easy tasks, scales on hard
+tasks, and everywhere it multiplies token cost — so realized score is
+`reasoning_gain − truncation_loss`, and high effort silently degrades unless
+`max_tokens` is scaled with it.
+
 ## Caveats
 
 - n=150 rows, one sample per cell, temperature 0 — flips are exact, but
@@ -50,6 +79,10 @@ at ~1/5 its cost *and* none of its truncation risk at sane budgets.
 - "Prefix effect" — effort works by injecting a `Thinking effort level`
   system message. Findings describe the mechanism as deployed, not isolated
   effort; see `lens prefix-gap` for the exploratory logprob probe.
-- Two benchmarks, one model, one decoding config — don't generalize beyond.
+- Two benchmark families, one model, one decoding config — don't generalize beyond.
+- AIME n=30: directionally informative, wide CIs on small differences.
+- AIME 2026 is the decontamination bet — uncontaminated *to our knowledge*;
+  we can't audit Inkling's training data directly.
 
-Spend to date: ~$1.05 total (diagnostics + sweep + 32k re-check + probes).
+Spend to date: ~$3.30 total (diagnostics + math_mix sweep + 32k re-check +
+AIME 2026 sweep ~$2.19).

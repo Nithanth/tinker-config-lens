@@ -50,9 +50,11 @@ class Output(BaseModel):
     est_cost_usd: float | None = None
     error: str | None = None
     # top-K (token_id, logprob) pairs per generated position — bulky; stripped
-    # by `lens export-web` in favor of mean_logprob
+    # by `lens export-web` in favor of the per-token chosen-token trace
     topk_logprobs: list[list[tuple[int, float]]] | None = None
-    # mean logprob of the sampled token per generated position (greedy = top-1)
+    # logprob of the sampled token at each position (greedy: top-1)
+    token_logprobs: list[float] | None = None
+    # mean of token_logprobs — per-row confidence scalar
     mean_logprob: float | None = None
 
 

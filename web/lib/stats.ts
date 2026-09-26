@@ -37,6 +37,32 @@ export const verdict = (r: Row): number | null => {
   return o && o.error == null ? o.grader.verdict : null;
 };
 
+export function bundleStats(b: RunBundle) {
+  const scored = b.rows.filter(
+    (r) => r.outputs[0]?.error == null && r.outputs[0]?.grader.verdict != null
+  );
+  const correct = scored.filter((r) => r.outputs[0].grader.verdict === 1.0);
+  const toks = scored
+    .map((r) => r.outputs[0].gen_tokens ?? 0)
+    .filter((t) => t > 0);
+  const cost = scored
+    .map((r) => r.outputs[0].est_cost_usd ?? 0)
+    .reduce((a, x) => a + x, 0);
+  const errors = b.rows.filter((r) => r.outputs[0]?.error != null);
+  const truncated = b.rows.filter(
+    (r) => r.outputs[0]?.stop_reason === "length" || r.outputs[0]?.stop_reason === "max_tokens"
+  );
+  return {
+    n: b.rows.length,
+    scored: scored.length,
+    acc: scored.length ? correct.length / scored.length : null,
+    meanTok: toks.length ? toks.reduce((a, x) => a + x, 0) / toks.length : null,
+    cost,
+    errors: errors.length,
+    truncated: truncated.length,
+  };
+}
+
 export interface PairStats {
   n: number;
   bothCorrect: number;

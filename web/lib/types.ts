@@ -28,6 +28,7 @@ export interface Output {
   est_cost_usd: number | null;
   error: string | null;
   topk_logprobs: [number, number][][] | null;
+  token_logprobs: number[] | null;
   mean_logprob: number | null;
 }
 

@@ -56,6 +56,19 @@ def _grade(grader: str, text: str, gold: str) -> float:
         )
 
         return float(grade_answer(extract_boxed(text), gold))
+    if grader == "aime":
+        from tinker_cookbook.eval.benchmarks._common import (
+            extract_boxed,
+            extract_gsm8k_answer,
+            extract_number,
+        )
+
+        boxed = extract_boxed(text)
+        extracted = extract_number(boxed) if boxed else extract_gsm8k_answer(text)
+        try:
+            return float(int(float(extracted)) == int(gold))
+        except (ValueError, TypeError):
+            return 0.0
     raise ValueError(f"unknown grader {grader!r}")
 
 

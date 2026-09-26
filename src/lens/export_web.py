@@ -18,7 +18,8 @@ def slim(bundle: RunBundle) -> RunBundle:
         for o in row.outputs:
             if o.topk_logprobs:
                 # at temperature 0 the chosen token is the top-1 entry
-                lps = [pos[0][1] for pos in o.topk_logprobs if pos]
+                lps = [round(pos[0][1], 3) for pos in o.topk_logprobs if pos]
+                o.token_logprobs = lps or None
                 o.mean_logprob = sum(lps) / len(lps) if lps else None
             o.topk_logprobs = None
     return bundle

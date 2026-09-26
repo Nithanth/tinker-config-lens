@@ -30,7 +30,7 @@ def main() -> int:
 
     fr = sub.add_parser("freeze", help="build a frozen, hashed manifest from a benchmark")
     fr.add_argument("--benchmark", action="append", required=True,
-                    choices=["gsm8k", "math500"], help="repeatable")
+                    choices=["gsm8k", "math500", "aime2026"], help="repeatable")
     fr.add_argument("--n", type=int, default=75, help="rows per benchmark")
     fr.add_argument("--seed", type=int, default=42)
     fr.add_argument("--out", required=True)

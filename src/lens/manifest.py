@@ -80,7 +80,51 @@ def _rows_math500(n: int, seed: int) -> list[dict]:
     return rows
 
 
-BUILDERS = {"gsm8k": _rows_gsm8k, "math500": _rows_math500}
+def _rows_aime2026(n: int, seed: int) -> list[dict]:
+    # AIME 2026 — postdates plausible Inkling training cutoffs, unlike
+    # aime_2025 which TML reports on. Same prompt format as the cookbook's
+    # AIMEMessageEnv so grading stays benchmark-native.
+    ds = None
+    for split in ("test", "train"):
+        try:
+            ds = load_benchmark_dataset("MathArena/aime_2026", split=split)
+            break
+        except Exception:
+            continue
+    assert ds is not None, "could not load MathArena/aime_2026"
+    ds = limit_dataset(ds, n, shuffle_seed=seed)
+    rows = []
+    for i, row in enumerate(ds):
+        row = dict(row)
+        problem = row.get("problem") or row.get("question") or row.get("Problem", "")
+        expected = str(row.get("answer") or row.get("Answer") or row.get("expected_answer", "")).strip()
+        if not problem or not expected:
+            continue
+        prompt = (
+            f"{problem}\n\n"
+            "This is an AIME problem. The answer is an integer from 000 to 999. "
+            "Show your work step by step, then put your final answer in \\boxed{}."
+        )
+        rows.append(
+            {
+                "row_id": make_example_id("aime2026", problem),
+                "messages": [
+                    {"role": "system", "content": "Put your final answer in \\boxed{}."},
+                    {"role": "user", "content": prompt},
+                ],
+                "gold": expected,
+                "grader": "aime",
+                "source_ids": {
+                    "benchmark": "aime_2026",
+                    "hf_path": "MathArena/aime_2026",
+                    "idx": str(i),
+                },
+            }
+        )
+    return rows
+
+
+BUILDERS = {"gsm8k": _rows_gsm8k, "math500": _rows_math500, "aime2026": _rows_aime2026}
 
 
 def manifest_hash(rows: list[dict]) -> str:

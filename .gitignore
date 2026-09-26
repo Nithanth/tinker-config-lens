@@ -25,3 +25,5 @@ runs/sweep_*.json
 web/node_modules/
 web/.next/
 web/out/
+runs_aime/
+web/public/data/
