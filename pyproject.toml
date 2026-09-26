@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tinker-config-lens"
+version = "0.1.0"
+description = "Paired-run comparison and inspection harness for Tinker evals"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+# TODO(M0): pin exact versions verified during instrument verification.
+# Spec rule: pin all dependency versions; do not upgrade to "fix" things.
+dependencies = [
+    "tinker",
+    "tinker-cookbook",
+    "tml-renderers",
+    "streamlit",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "ruff",
+]
+
+[project.scripts]
+lens = "lens.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

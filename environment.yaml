@@ -1,0 +1,24 @@
+# Devin snapshot setup for tinker-config-lens.
+# Unverified until the DRS blueprint build passes — verify after first push.
+initialize:
+  - run: |
+      python -m pip install --upgrade pip
+      python -m pip install -e ".[dev]"
+maintenance:
+  - run: |
+      python -m pip install -e ".[dev]" >/dev/null 2>&1 || true
+knowledge:
+  - name: test
+    contents: |
+      python -m pytest -q
+  - name: lint
+    contents: |
+      python -m ruff check src/
+  - name: app
+    contents: |
+      streamlit run app/Home.py
+  - name: secrets-and-spend
+    contents: |
+      TINKER_API_KEY is provided via Devin org secrets (env only). Never print,
+      log, or commit it. No bulk sampling before the M0 gate and an approved
+      cost forecast. $25 planning stop; $100 absolute ceiling. See SPEC.md §4.
