@@ -1,0 +1,112 @@
+[
+  {
+    "prompt_id": "math",
+    "effort": 0.0,
+    "label": "base",
+    "prompt_tokens": 29,
+    "gen_tokens": 144,
+    "termination": "stop_sequence",
+    "answer_tail": "d use the distributive property:\n\n**347 \u00d7 20 = 6,940**\n\n**347 \u00d7 8 = 2,776**\n\nNow add them together:\n\n```\n  6,940\n+ 2,776\n-------\n  9,716\n```\n\n**Check with long multiplication:**\n\n```\n    347\n  \u00d7  28\n  -----\n   2776   (347 \u00d7 8)\n  6940    (347 \u00d7 20, shifted)\n  -----\n  9716\n```\n\n**Final answer: 9,716**",
+    "n_prompt_tokens_rendered": 29
+  },
+  {
+    "prompt_id": "math",
+    "effort": 0.9,
+    "label": "base",
+    "prompt_tokens": 31,
+    "gen_tokens": 740,
+    "termination": "stop_sequence",
+    "answer_tail": "-------\n  9,716\n```\n\n**Check with long multiplication:**\n\n```\n    347\n  \u00d7  28\n  -----\n   2776   \u2190 347 \u00d7 8\n  6940    \u2190 347 \u00d7 20 (shifted left)\n  -----\n   9716\n```\n\n**Verification by parts:**\n- 300 \u00d7 28 = 8,400\n- 40 \u00d7 28 = 1,120\n- 7 \u00d7 28 = 196\n- 8,400 + 1,120 + 196 = **9,716**\n\n**Final answer: 9,716**",
+    "n_prompt_tokens_rendered": 31
+  },
+  {
+    "prompt_id": "math",
+    "effort": 0.99,
+    "label": "base",
+    "prompt_tokens": 31,
+    "gen_tokens": 449,
+    "termination": "stop_sequence",
+    "answer_tail": " + 8**:\n\n1. **347 \u00d7 20** = 6,940  \n2. **347 \u00d7 8** = 2,776  \n\nNow add them:\n\n```\n  6,940\n+ 2,776\n-------\n  9,716\n```\n\n**Check with another split** (347 = 300 + 40 + 7):\n\n- 300 \u00d7 28 = 8,400  \n- 40 \u00d7 28 = 1,120  \n- 7 \u00d7 28 = 196  \n\n8,400 + 1,120 = 9,520  \n9,520 + 196 = **9,716**\n\n**Final answer: 9,716**",
+    "n_prompt_tokens_rendered": 31
+  },
+  {
+    "prompt_id": "yesno",
+    "effort": 0.0,
+    "label": "base",
+    "prompt_tokens": 29,
+    "gen_tokens": 31,
+    "termination": "stop_sequence",
+    "answer_tail": "Yes; 104,729 is the 10,000th prime number and has no divisors other than 1 and itself.",
+    "n_prompt_tokens_rendered": 29
+  },
+  {
+    "prompt_id": "yesno",
+    "effort": 0.9,
+    "label": "base",
+    "prompt_tokens": 31,
+    "gen_tokens": 151,
+    "termination": "stop_sequence",
+    "answer_tail": "Yes; 104,729 is the 10,000th prime number and has no divisors other than 1 and itself (its square root is about 323, and it passes trial division by all smaller primes).",
+    "n_prompt_tokens_rendered": 31
+  },
+  {
+    "prompt_id": "yesno",
+    "effort": 0.99,
+    "label": "base",
+    "prompt_tokens": 31,
+    "gen_tokens": 157,
+    "termination": "stop_sequence",
+    "answer_tail": "Yes; 104,729 is the 10,000th prime number and has no divisors other than 1 and itself (its square root is about 323, and it is not divisible by any prime up to that).",
+    "n_prompt_tokens_rendered": 31
+  },
+  {
+    "prompt_id": "choice",
+    "effort": 0.0,
+    "label": "base",
+    "prompt_tokens": 53,
+    "gen_tokens": 5,
+    "termination": "stop_sequence",
+    "answer_tail": "3",
+    "n_prompt_tokens_rendered": 53
+  },
+  {
+    "prompt_id": "choice",
+    "effort": 0.9,
+    "label": "base",
+    "prompt_tokens": 55,
+    "gen_tokens": 166,
+    "termination": "stop_sequence",
+    "answer_tail": "3",
+    "n_prompt_tokens_rendered": 55
+  },
+  {
+    "prompt_id": "choice",
+    "effort": 0.99,
+    "label": "base",
+    "prompt_tokens": 55,
+    "gen_tokens": 975,
+    "termination": "stop_sequence",
+    "answer_tail": "3",
+    "n_prompt_tokens_rendered": 55
+  },
+  {
+    "prompt_id": "math",
+    "effort": 0.9,
+    "label": "repeat",
+    "prompt_tokens": 31,
+    "gen_tokens": 740,
+    "termination": "stop_sequence",
+    "answer_tail": "-------\n  9,716\n```\n\n**Check with long multiplication:**\n\n```\n    347\n  \u00d7  28\n  -----\n   2776   \u2190 347 \u00d7 8\n  6940    \u2190 347 \u00d7 20 (shifted left)\n  -----\n   9716\n```\n\n**Verification by parts:**\n- 300 \u00d7 28 = 8,400\n- 40 \u00d7 28 = 1,120\n- 7 \u00d7 28 = 196\n- 8,400 + 1,120 + 196 = **9,716**\n\n**Final answer: 9,716**",
+    "n_prompt_tokens_rendered": 31
+  },
+  {
+    "prompt_id": "yesno",
+    "effort": 0.0,
+    "label": "repeat",
+    "prompt_tokens": 29,
+    "gen_tokens": 31,
+    "termination": "stop_sequence",
+    "answer_tail": "Yes; 104,729 is the 10,000th prime number and has no divisors other than 1 and itself.",
+    "n_prompt_tokens_rendered": 29
+  }
+]

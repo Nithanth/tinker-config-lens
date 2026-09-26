@@ -9,19 +9,20 @@ description = "Paired-run comparison and inspection harness for Tinker evals"
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }
-# TODO(M0): pin exact versions verified during instrument verification.
-# Spec rule: pin all dependency versions; do not upgrade to "fix" things.
+# Pinned at versions verified in M0 (docs/M0_NOTES.md). Do not upgrade to
+# "fix" things without asking (SPEC.md operating rules).
 dependencies = [
-    "tinker",
-    "tinker-cookbook",
-    "tml-renderers",
-    "streamlit",
+    "tinker==0.30.3",
+    "tinker-cookbook==0.5.7",
+    "tml-renderers==0.1.0",
+    "torch==2.14.0",
+    "streamlit==1.64.0",
 ]
 
 [project.optional-dependencies]
 dev = [
-    "pytest",
-    "ruff",
+    "pytest==9.1.1",
+    "ruff==0.16.9",
 ]
 
 [project.scripts]
