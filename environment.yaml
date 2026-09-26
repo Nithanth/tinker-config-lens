@@ -16,7 +16,7 @@ knowledge:
       python -m ruff check src/
   - name: app
     contents: |
-      streamlit run app/Home.py
+      cd web && npm install && npm run dev   # Next.js inspector, reads runs/
   - name: secrets-and-spend
     contents: |
       TINKER_API_KEY comes from the environment only (locally: source

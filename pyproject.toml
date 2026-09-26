@@ -16,7 +16,7 @@ dependencies = [
     "tinker-cookbook==0.5.7",
     "tml-renderers==0.1.0",
     "torch==2.14.0",
-    "streamlit==1.64.0",
+    "pydantic>=2.0,<3",
 ]
 
 [project.optional-dependencies]

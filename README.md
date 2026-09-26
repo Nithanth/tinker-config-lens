@@ -6,7 +6,22 @@ The reference dataset is an Inkling effort sweep (one model, five effort setting
 
 ## Status
 
-Early development. Instrument verification done (`docs/verification.md`); runner, importer, compare engine, and app under construction.
+Early development. Instrument verification done (`docs/verification.md`); runner, importer, compare engine, and web app under construction.
+
+## Usage
+
+```
+lens verify [--offline]      # instrument check: does effort conditioning work?
+lens prefix-gap              # exploratory: score a continuation under counterfactual prefixes
+lens sweep <manifest>        # effort sweep over frozen questions → RunBundles
+lens import-evalstore <path> # convert a native EvalStore run → RunBundle
+lens compare <bundles...>    # paired stats + flip report
+```
+
+Everything the CLI writes is a **RunBundle** — a JSON file with run lineage
+(model/renderer/grader versions, config + manifest hashes) and per-row outputs
+(answers, token counts, stop reasons, grader verdicts, costs). The web app in
+`web/` reads bundles only; it never touches the API or secrets.
 
 ## Rules (from the spec)
 
@@ -16,10 +31,10 @@ Early development. Instrument verification done (`docs/verification.md`); runner
 
 ## Layout
 
-- `src/lens/` — the `lens` package and CLI (`lens sweep`, `lens import-evalstore`, `lens compare`)
+- `src/lens/` — the `lens` package and CLI
 - `docs/` — verification and run notes
 - `runs/` — committed RunBundles and compare output
-- `app/` — Streamlit read-only screens
+- `web/` — read-only React/Next.js inspector (static export, no backend)
 - `.devin/skills/inkling/` — vendored Inkling skill from tinker-cookbook
 
 ## License
