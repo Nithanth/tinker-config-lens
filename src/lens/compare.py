@@ -28,6 +28,20 @@ def _gen_tokens(row) -> int | None:
     return row.outputs[0].gen_tokens
 
 
+def failure_kind(o) -> str | None:
+    """Classify a non-correct output: why did it fail? Returns None if correct."""
+    if o.error is not None:
+        return "error"
+    if o.grader.verdict == 1.0:
+        return None
+    if o.stop_reason in ("length", "max_tokens"):
+        return "truncation"
+    rat = o.grader.rationale or ""
+    if "malformed" in rat or "grader_error" in rat or "No boxed" in rat:
+        return "parse"
+    return "wrong_answer"
+
+
 def _align(bundles: list[RunBundle]):
     """Complete pairs only; every exclusion is named."""
     key = lambda b: f"{b.config.model_id}@e{b.config.effort}"
@@ -96,6 +110,14 @@ def compare(bundles: list[RunBundle]) -> dict:
             if r.outputs[0].est_cost_usd is not None
         ]
         report["runs"][k]["est_cost_usd"] = sum(costs) if costs else None
+        kinds = [
+            failure_kind(r.outputs[0])
+            for r in b.rows
+            if r.row_id in complete and failure_kind(r.outputs[0])
+        ]
+        report["runs"][k]["failure_taxonomy"] = {
+            t: kinds.count(t) for t in ("truncation", "parse", "wrong_answer", "error") if kinds.count(t)
+        }
 
     for a, b in combinations(keys, 2):
         both_right = both_wrong = only_a = only_b = 0
@@ -119,6 +141,13 @@ def compare(bundles: list[RunBundle]) -> dict:
             else:
                 only_b += 1
                 flips.append({"row_id": rid, "dir": f"{b} correct, {a} wrong"})
+        # failure taxonomy per direction — what kind of failure flipped?
+        flip_taxonomy = {}
+        for f in flips:
+            loser_key = a if f["dir"].startswith(f"{b} correct") else b
+            loser_row = per_run[loser_key][f["row_id"]]
+            kind = failure_kind(loser_row.outputs[0]) or "wrong_answer"
+            flip_taxonomy[kind] = flip_taxonomy.get(kind, 0) + 1
         acc_mean, acc_lo, acc_hi = _paired_ci(acc_diffs)
         tok_mean, tok_lo, tok_hi = _paired_ci(tok_diffs)
         report["pairs"][f"{a} vs {b}"] = {
@@ -131,6 +160,7 @@ def compare(bundles: list[RunBundle]) -> dict:
             "acc_diff_ci95": [acc_lo, acc_hi],
             "gen_tok_diff_mean": tok_mean,
             "gen_tok_diff_ci95": [tok_lo, tok_hi],
+            "flip_taxonomy": flip_taxonomy,
             "flips": flips,
         }
     return report
@@ -145,7 +175,9 @@ def main(args) -> int:
         acc = f"{d['accuracy']:.3f}" if d["accuracy"] is not None else "—"
         tok = f"{d['mean_gen_tokens']:.0f}" if d["mean_gen_tokens"] else "—"
         cost = f"${d['est_cost_usd']:.4f}" if d["est_cost_usd"] else "—"
-        print(f"  {k:>28}: acc={acc} (n={d['n_scored']}), ~{tok} gen tok, {cost}")
+        taxo = d.get("failure_taxonomy") or {}
+        taxo_s = ", ".join(f"{t}:{n}" for t, n in taxo.items()) or "none"
+        print(f"  {k:>28}: acc={acc} (n={d['n_scored']}), ~{tok} gen tok, {cost}  failures[{taxo_s}]")
     for name, d in report["pairs"].items():
         print(
             f"  {name}: {d['only_a_correct']}+{d['only_b_correct']} flips, "

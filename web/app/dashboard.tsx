@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import type { RunBundle } from "@/lib/types";
 import { runKey } from "@/lib/types";
-import { bundleStats } from "@/lib/stats";
+import { bundleStats, failureTaxonomy } from "@/lib/stats";
 import { FrontierChart, TokenScatter } from "./charts";
 import Atlas from "./atlas";
 
@@ -75,7 +75,7 @@ export default function Dashboard({ bundles }: { bundles: RunBundle[] }) {
         <thead>
           <tr>
             <th>run</th><th>accuracy</th><th>n</th><th>~gen tok</th>
-            <th>est. cost</th><th>hit cap</th><th>errors</th><th>config</th>
+            <th>est. cost</th><th>failure breakdown</th><th>config</th>
           </tr>
         </thead>
         <tbody>
@@ -90,8 +90,11 @@ export default function Dashboard({ bundles }: { bundles: RunBundle[] }) {
                 <td>{s.scored}/{s.n}</td>
                 <td>{s.meanTok == null ? "—" : s.meanTok.toFixed(0)}</td>
                 <td>${s.cost.toFixed(3)}</td>
-                <td>{s.truncated || "—"}</td>
-                <td>{s.errors || "—"}</td>
+                <td>
+                  {Object.entries(failureTaxonomy(b.rows)).map(([k, n]) => (
+                    <span key={k} className="taxo-chip">{n} {k.replace("_", " ")}</span>
+                  ))}
+                </td>
                 <td className="dim" title={`run ${b.run_id} · ${b.config_hash}`}>
                   <code>{b.config_hash.slice(0, 8)}</code>
                 </td>

@@ -37,6 +37,25 @@ export const verdict = (r: Row): number | null => {
   return o && o.error == null ? o.grader.verdict : null;
 };
 
+/** Why a non-correct output failed. Matches src/lens/compare.py:failure_kind. */
+export function failureKind(o: Row["outputs"][0]): "truncation" | "parse" | "wrong_answer" | "error" | null {
+  if (o.error != null) return "error";
+  if (o.grader.verdict === 1.0) return null;
+  if (o.stop_reason === "length" || o.stop_reason === "max_tokens") return "truncation";
+  const rat = o.grader.rationale ?? "";
+  if (rat.includes("malformed") || rat.includes("grader_error") || rat.includes("No boxed")) return "parse";
+  return "wrong_answer";
+}
+
+export function failureTaxonomy(rows: Row[]): Record<string, number> {
+  const out: Record<string, number> = {};
+  for (const r of rows) {
+    const k = r.outputs[0] && failureKind(r.outputs[0]);
+    if (k) out[k] = (out[k] ?? 0) + 1;
+  }
+  return out;
+}
+
 export function bundleStats(b: RunBundle) {
   const scored = b.rows.filter(
     (r) => r.outputs[0]?.error == null && r.outputs[0]?.grader.verdict != null

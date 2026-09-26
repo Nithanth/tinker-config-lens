@@ -7,31 +7,48 @@
       "accuracy": 0.8733333333333333,
       "n_scored": 150,
       "mean_gen_tokens": 166.99333333333334,
-      "est_cost_usd": 0.04328808
+      "est_cost_usd": 0.04328808,
+      "failure_taxonomy": {
+        "wrong_answer": 19
+      }
     },
     "thinkingmachines/Inkling-Small@e0.2": {
       "accuracy": 0.9666666666666667,
       "n_scored": 150,
       "mean_gen_tokens": 249.45333333333335,
-      "est_cost_usd": 0.06127344
+      "est_cost_usd": 0.06127344,
+      "failure_taxonomy": {
+        "wrong_answer": 5
+      }
     },
     "thinkingmachines/Inkling-Small@e0.7": {
       "accuracy": 0.9666666666666667,
       "n_scored": 150,
       "mean_gen_tokens": 475.49333333333334,
-      "est_cost_usd": 0.11009808
+      "est_cost_usd": 0.11009808,
+      "failure_taxonomy": {
+        "wrong_answer": 5
+      }
     },
     "thinkingmachines/Inkling-Small@e0.99": {
       "accuracy": 0.9133333333333333,
       "n_scored": 150,
       "mean_gen_tokens": 1425.62,
-      "est_cost_usd": 0.31532543999999996
+      "est_cost_usd": 0.31532543999999996,
+      "failure_taxonomy": {
+        "truncation": 8,
+        "wrong_answer": 5
+      }
     },
     "thinkingmachines/Inkling-Small@e0.9": {
       "accuracy": 0.9466666666666667,
       "n_scored": 150,
       "mean_gen_tokens": 1078.3733333333332,
-      "est_cost_usd": 0.24032015999999998
+      "est_cost_usd": 0.24032015999999998,
+      "failure_taxonomy": {
+        "truncation": 3,
+        "wrong_answer": 5
+      }
     }
   },
   "pairs": {
@@ -51,6 +68,9 @@
         -113.74,
         -55.06666666666667
       ],
+      "flip_taxonomy": {
+        "wrong_answer": 16
+      },
       "flips": [
         {
           "row_id": "gsm8k_b29f9437da59",
@@ -134,6 +154,9 @@
         -381.6666666666667,
         -242.76
       ],
+      "flip_taxonomy": {
+        "wrong_answer": 18
+      },
       "flips": [
         {
           "row_id": "gsm8k_3712c468d681",
@@ -225,6 +248,10 @@
         -1629.0,
         -913.3333333333334
       ],
+      "flip_taxonomy": {
+        "wrong_answer": 15,
+        "truncation": 5
+      },
       "flips": [
         {
           "row_id": "gsm8k_3712c468d681",
@@ -324,6 +351,10 @@
         -1190.2933333333333,
         -663.6666666666666
       ],
+      "flip_taxonomy": {
+        "wrong_answer": 17,
+        "truncation": 2
+      },
       "flips": [
         {
           "row_id": "gsm8k_3712c468d681",
@@ -419,6 +450,9 @@
         -280.84,
         -176.48
       ],
+      "flip_taxonomy": {
+        "wrong_answer": 4
+      },
       "flips": [
         {
           "row_id": "gsm8k_3712c468d681",
@@ -454,6 +488,10 @@
         -1532.88,
         -848.3333333333334
       ],
+      "flip_taxonomy": {
+        "wrong_answer": 4,
+        "truncation": 8
+      },
       "flips": [
         {
           "row_id": "gsm8k_3712c468d681",
@@ -521,6 +559,10 @@
         -1089.02,
         -596.2933333333333
       ],
+      "flip_taxonomy": {
+        "wrong_answer": 4,
+        "truncation": 3
+      },
       "flips": [
         {
           "row_id": "gsm8k_3712c468d681",
@@ -568,6 +610,9 @@
         -1266.1666666666667,
         -657.4533333333334
       ],
+      "flip_taxonomy": {
+        "truncation": 8
+      },
       "flips": [
         {
           "row_id": "gsm8k_912aea753801",
@@ -619,6 +664,9 @@
         -817.4933333333333,
         -410.72
       ],
+      "flip_taxonomy": {
+        "truncation": 3
+      },
       "flips": [
         {
           "row_id": "math500_729aab2d0668",
@@ -650,6 +698,9 @@
         185.23333333333332,
         526.4333333333333
       ],
+      "flip_taxonomy": {
+        "truncation": 5
+      },
       "flips": [
         {
           "row_id": "gsm8k_912aea753801",
