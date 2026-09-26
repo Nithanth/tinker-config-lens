@@ -77,9 +77,30 @@ Raw diagnostic output: `runs/effort_diagnostics.json` · Script: `scripts/verify
 - tinker 0.30.3 · tinker-cookbook 0.5.7 · tml-renderers 0.1.0 · torch 2.14.0
 - streamlit 1.64.0 · pytest 9.1.1 · ruff 0.16.9
 
+## (d) Prefix-gap primitive — VERIFIED (exploratory probe)
+
+`SamplingClient.compute_logprobs(ModelInput)` returns per-token logprobs for an
+arbitrary token sequence, so scoring one run's exact generated ids under a
+different effort prefix is aligned by construction — no fuzzy matching needed.
+
+Smoke test (`scripts/score_prefix_gap.py`): sampled 195 tokens on the math
+prompt at effort 0.9, then scored the same token ids under both prefixes:
+
+- log P(tokens | effort 0.0 prefix) = **-36.3 nats** (mean -0.186/token)
+- log P(tokens | effort 0.9 prefix) = **-13.4 nats** (mean -0.069/token)
+- Gap = **+23.0 nats** in favor of the generating prefix — the instruction
+  prefix alone shifts sequence probability by ~10 orders of magnitude.
+
+Also available on `sample()`: `topk_sample_logprobs` (top-K logprobs per
+generated position — captured per row in the sweep at near-zero cost) and
+`target_prompt_logprobs` (score chosen token ids at chosen prompt positions).
+Caveat for the writeup: the prefix changes the instruction text, so this
+measures "prefix effect" — which IS the effort mechanism — not pure effort
+isolation.
+
 ## Spend so far
 
-~360 prompt + ~2,840 gen tokens on Inkling-Small ≈ **< $0.01** so far.
+~400 prompt + ~3,000 gen tokens + ~800 prefill-scoring tokens on Inkling-Small ≈ **< $0.02** so far.
 Baseline screenshot taken separately by owner.
 
 ## Blockers
