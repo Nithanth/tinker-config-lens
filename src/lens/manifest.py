@@ -134,10 +134,17 @@ def manifest_hash(rows: list[dict]) -> str:
 
 def main(args) -> int:
     rows: list[dict] = []
+    specs = []  # (benchmark, n)
     for bench in args.benchmark:
+        if ":" in bench:
+            name, n_s = bench.rsplit(":", 1)
+            specs.append((name, int(n_s)))
+        else:
+            specs.append((bench, args.n))
+    for bench, n in specs:
         if bench not in BUILDERS:
             raise SystemExit(f"unknown benchmark {bench!r}; have {sorted(BUILDERS)}")
-        rows.extend(BUILDERS[bench](args.n, args.seed))
+        rows.extend(BUILDERS[bench](n, args.seed))
 
     # dedupe + validate
     seen: set[str] = set()
@@ -153,8 +160,8 @@ def main(args) -> int:
     doc = {
         "manifest_version": MANIFEST_VERSION,
         "created_at": datetime.now(timezone.utc).isoformat(),
-        "benchmarks": args.benchmark,
-        "n_requested": args.n * len(args.benchmark),
+        "benchmarks": [f"{b}:{n}" for b, n in specs],
+        "n_requested": sum(n for _, n in specs),
         "n_rows": len(uniq),
         "seed": args.seed,
         "manifest_hash": manifest_hash(uniq),

@@ -18,29 +18,43 @@ const tip = {
   labelStyle: { color: "#8b949e" },
 };
 
-/** Accuracy vs effort, with mean gen tokens and per-run cost overlaid. */
+const MCOLORS = ["#3fb950", "#bc8cff", "#58a6ff", "#d29922"];
+
+/** Accuracy vs effort per model, with mean gen tokens as grouped bars. */
 export function FrontierChart({ bundles }: { bundles: RunBundle[] }) {
-  const data = bundles.map((b) => {
+  const models = [...new Set(bundles.map((b) => b.config.model_id.split("/").pop()!))];
+  const byEffort = new Map<number, Record<string, number | null>>();
+  let minAcc = 100;
+  for (const b of bundles) {
+    const e = b.config.effort ?? -1;
+    const m = b.config.model_id.split("/").pop()!;
     const s = bundleStats(b);
-    return {
-      effort: b.config.effort ?? -1,
-      acc: s.acc == null ? null : +(s.acc * 100).toFixed(1),
-      tok: s.meanTok == null ? null : Math.round(s.meanTok),
-      cost: +s.cost.toFixed(3),
-    };
-  });
+    const row = byEffort.get(e) ?? { effort: e };
+    row[`acc_${m}`] = s.acc == null ? null : +(s.acc * 100).toFixed(1);
+    row[`tok_${m}`] = s.meanTok == null ? null : Math.round(s.meanTok);
+    if (s.acc != null) minAcc = Math.min(minAcc, s.acc * 100);
+    byEffort.set(e, row);
+  }
+  const data = [...byEffort.values()].sort((a, b) => (a.effort as number) - (b.effort as number));
+  const accFloor = Math.max(0, Math.floor((minAcc - 5) / 10) * 10);
   return (
     <ResponsiveContainer width="100%" height={300}>
       <ComposedChart data={data} margin={{ top: 12, right: 16, bottom: 4, left: 0 }}>
         <CartesianGrid stroke={C.border} strokeDasharray="3 3" vertical={false} />
         <XAxis dataKey="effort" stroke={C.dim} fontSize={12} tickFormatter={(v) => `${v}`} label={{ value: "effort", position: "insideBottom", offset: -2, fill: C.dim, fontSize: 11 }} />
-        <YAxis yAxisId="acc" domain={[60, 100]} stroke={C.green} fontSize={12} tickFormatter={(v) => `${v}%`} />
-        <YAxis yAxisId="tok" orientation="right" stroke={C.blue} fontSize={12} />
+        <YAxis yAxisId="acc" domain={[accFloor, 100]} stroke={C.dim} fontSize={12} tickFormatter={(v) => `${v}%`} />
+        <YAxis yAxisId="tok" orientation="right" stroke={C.dim} fontSize={12} />
         <Tooltip {...tip} formatter={(v: number, name: string) =>
-          name === "accuracy" ? `${v}%` : name === "gen tokens" ? `${v} tok` : `$${v}`} />
+          name.startsWith("tok:") ? `${v} tok` : `${v}%`} />
         <Legend wrapperStyle={{ fontSize: 12 }} />
-        <Bar yAxisId="tok" dataKey="tok" name="gen tokens" fill={C.blue} fillOpacity={0.35} radius={[3, 3, 0, 0]} />
-        <Line yAxisId="acc" dataKey="acc" name="accuracy" stroke={C.green} strokeWidth={2} dot={{ r: 4 }} connectNulls />
+        {models.map((m, i) => (
+          <Bar key={`t-${m}`} yAxisId="tok" dataKey={`tok_${m}`} name={`tok: ${m}`}
+               fill={MCOLORS[i % MCOLORS.length]} fillOpacity={0.25} radius={[3, 3, 0, 0]} />
+        ))}
+        {models.map((m, i) => (
+          <Line key={`a-${m}`} yAxisId="acc" dataKey={`acc_${m}`} name={m}
+                stroke={MCOLORS[i % MCOLORS.length]} strokeWidth={2} dot={{ r: 4 }} connectNulls />
+        ))}
       </ComposedChart>
     </ResponsiveContainer>
   );
@@ -49,18 +63,22 @@ export function FrontierChart({ bundles }: { bundles: RunBundle[] }) {
 /** Per-row generated-token count vs effort; color = verdict. Reveals the
  *  verbosity scaling and where truncations pile up. */
 export function TokenScatter({ bundles, capLine }: { bundles: RunBundle[]; capLine?: number }) {
-  const data = bundles.flatMap((b) =>
-    b.rows.map((r) => {
+  const models = [...new Set(bundles.map((b) => b.config.model_id))];
+  const data = bundles.flatMap((b) => {
+    // when two models share a manifest, jitter effort slightly so the
+    // clouds don't sit exactly on top of each other
+    const j = models.length > 1 ? (models.indexOf(b.config.model_id) === 0 ? -0.012 : 0.012) : 0;
+    return b.rows.map((r) => {
       const o = r.outputs[0];
       return {
-        effort: b.config.effort ?? -1,
+        effort: (b.config.effort ?? -1) + j,
         tok: o.gen_tokens ?? 0,
         ok: o.grader.verdict === 1.0,
         truncated: o.stop_reason === "length",
         id: r.row_id,
       };
-    })
-  );
+    });
+  });
   const ok = data.filter((d) => d.ok && !d.truncated);
   const wrong = data.filter((d) => !d.ok && !d.truncated);
   const trunc = data.filter((d) => d.truncated);

@@ -6,8 +6,11 @@
   lens sweep            run an effort sweep over a frozen manifest → RunBundles
   lens import-evalstore convert a native Tinker EvalStore run → RunBundle
   lens compare          paired stats + flip report across RunBundles
+  lens export-web       slim bundles → static JSON for the inspector
+  lens web              build + serve the read-only web inspector
 
-The web app (web/) reads RunBundles; only the CLI ever touches the API.
+The web app (web/) is a static export that reads RunBundle JSON; only the
+CLI ever touches the API.
 """
 
 import argparse
@@ -30,7 +33,7 @@ def main() -> int:
 
     fr = sub.add_parser("freeze", help="build a frozen, hashed manifest from a benchmark")
     fr.add_argument("--benchmark", action="append", required=True,
-                    choices=["gsm8k", "math500", "aime2026"], help="repeatable")
+                    help="repeatable; name or name:n — e.g. gsm8k:500 math500")
     fr.add_argument("--n", type=int, default=75, help="rows per benchmark")
     fr.add_argument("--seed", type=int, default=42)
     fr.add_argument("--out", required=True)
@@ -59,6 +62,12 @@ def main() -> int:
     ex.add_argument("bundles", nargs="+")
     ex.add_argument("--out-dir", default="web/public/data")
 
+    wb = sub.add_parser("web", help="build (if needed) + serve the static inspector")
+    wb.add_argument("--dir", default="web", help="path to the web app")
+    wb.add_argument("--port", type=int, default=8347)
+    wb.add_argument("--rebuild", action="store_true", help="force `npm run build`")
+    wb.add_argument("--open", action="store_true", help="open the browser")
+
     args = p.parse_args()
     if args.cmd == "verify":
         from lens import verify
@@ -81,6 +90,9 @@ def main() -> int:
     if args.cmd == "export-web":
         from lens import export_web
         return export_web.main(args)
+    if args.cmd == "web":
+        from lens import web
+        return web.main(args)
     return 1
 
 

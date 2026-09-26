@@ -105,10 +105,10 @@ export function pairStats(paired: PairedRow[]): PairStats {
   for (const p of paired) {
     const { va, vb } = p;
     if (va == null || vb == null) continue;
-    diffs.push(va - vb);
+    diffs.push(vb - va); // Δ = B − A: what changes going A → B
     const ta = p.a.outputs[0].gen_tokens;
     const tb = p.b.outputs[0].gen_tokens;
-    if (ta != null && tb != null) tokDiffs.push(ta - tb);
+    if (ta != null && tb != null) tokDiffs.push(tb - ta);
     if (va === 1 && vb === 1) bothCorrect++;
     else if (va === 0 && vb === 0) bothWrong++;
     else if (va === 1) { onlyA++; flips.push(p); }

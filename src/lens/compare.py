@@ -127,10 +127,10 @@ def compare(bundles: list[RunBundle]) -> dict:
             va, vb = scored[a].get(rid), scored[b].get(rid)
             if va is None or vb is None:
                 continue
-            acc_diffs.append(va - vb)
+            acc_diffs.append(vb - va)  # Δ = B − A: what changes going A → B
             ta, tb = toks.get(a, {}).get(rid), toks.get(b, {}).get(rid)
             if ta is not None and tb is not None:
-                tok_diffs.append(ta - tb)
+                tok_diffs.append(tb - ta)
             if va == vb == 1.0:
                 both_right += 1
             elif va == vb == 0.0:
@@ -181,7 +181,7 @@ def main(args) -> int:
     for name, d in report["pairs"].items():
         print(
             f"  {name}: {d['only_a_correct']}+{d['only_b_correct']} flips, "
-            f"Δacc={d['acc_diff_mean']:.3f} CI95 [{d['acc_diff_ci95'][0]:.3f},{d['acc_diff_ci95'][1]:.3f}], "
+            f"Δacc(B−A)={d['acc_diff_mean']:.3f} CI95 [{d['acc_diff_ci95'][0]:.3f},{d['acc_diff_ci95'][1]:.3f}], "
             f"Δtok={d['gen_tok_diff_mean']:.0f}"
         )
 

@@ -53,3 +53,17 @@ export interface RunBundle {
 
 export const runKey = (b: RunBundle) =>
   `${b.config.model_id.split("/").pop()}@e${b.config.effort ?? "∅"}`;
+
+// index.json written by `lens export-web` — the app loads this first, then
+// fetches a manifest's bundles on demand (they can be tens of MB).
+export interface ManifestEntry {
+  manifest_hash: string;
+  label: string;
+  n_rows: number;
+  files: string[];
+}
+
+export interface WebIndex {
+  schema_version: "webindex/v1";
+  manifests: ManifestEntry[];
+}
