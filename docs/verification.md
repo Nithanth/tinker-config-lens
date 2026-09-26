@@ -1,8 +1,8 @@
-# M0 — Instrument verification notes
+# Instrument verification
 
-Date: 2026-09-25 · Account: owner's Tinker account · Verdict: **GATE PASSED**
+Date: 2026-09-25 · Verdict: **PASSED** — effort conditioning works on this account, EvalStore import is feasible.
 
-Raw diagnostic output: `runs/m0_effort_diagnostics.json` · Script: `scripts/m0_effort_check.py`
+Raw diagnostic output: `runs/effort_diagnostics.json` · Script: `scripts/verify_effort.py`
 
 ## (a) Does effort conditioning work on this account? — YES
 
@@ -68,7 +68,7 @@ Raw diagnostic output: `runs/m0_effort_diagnostics.json` · Script: `scripts/m0_
 - Benchmarks present in this pinned release: `aime, ceval, gpqa, gsm8k,
   ifbench, ifeval, math500, mbpp, mmlu_pro, mmlu_redux, supergpqa` (+ sandboxed:
   swe_bench, terminal_bench, livecodebench, tau2_bench, arena_hard, hmmt,
-  longbench). For M1 pick cookbook-native, non-sandboxed, non-judge:
+  longbench). For the sweep pick cookbook-native, non-sandboxed, non-judge:
   **gsm8k** (math, deterministic grading) + **mmlu_pro or math500** (contrast).
 
 ## (c) Pinned versions that work together
@@ -79,7 +79,7 @@ Raw diagnostic output: `runs/m0_effort_diagnostics.json` · Script: `scripts/m0_
 
 ## Spend so far
 
-~360 prompt + ~2,840 gen tokens on Inkling-Small ≈ **< $0.01** (M0 only).
+~360 prompt + ~2,840 gen tokens on Inkling-Small ≈ **< $0.01** so far.
 Baseline screenshot taken separately by owner.
 
 ## Blockers

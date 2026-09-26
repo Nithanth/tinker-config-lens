@@ -19,6 +19,7 @@ knowledge:
       streamlit run app/Home.py
   - name: secrets-and-spend
     contents: |
-      TINKER_API_KEY is provided via Devin org secrets (env only). Never print,
-      log, or commit it. No bulk sampling before the M0 gate and an approved
-      cost forecast. $25 planning stop; $100 absolute ceiling. See SPEC.md §4.
+      TINKER_API_KEY comes from the environment only (locally: source
+      ~/.secrets/tinker.env). Never print, log, or commit it. No bulk sampling
+      before the instrument check in docs/verification.md passes and an
+      approved cost forecast. $25 planning stop; $100 absolute ceiling.

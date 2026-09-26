@@ -9,8 +9,8 @@ description = "Paired-run comparison and inspection harness for Tinker evals"
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }
-# Pinned at versions verified in M0 (docs/M0_NOTES.md). Do not upgrade to
-# "fix" things without asking (SPEC.md operating rules).
+# Pinned at versions verified in the instrument check (docs/verification.md).
+# Do not upgrade to "fix" things without confirming first.
 dependencies = [
     "tinker==0.30.3",
     "tinker-cookbook==0.5.7",

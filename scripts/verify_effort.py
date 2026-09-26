@@ -1,12 +1,12 @@
-"""M0 effort-gate diagnostics per SPEC.md §3 M0b.
+"""Effort-conditioning verification probe for Inkling models.
 
-Diagnostic calls only — no sweeps, no bulk sampling. ~11 sampling calls,
-max_tokens=2048 each. Verifies:
-  - effort prefix accepted and reflected in the rendered prompt
+Diagnostic calls only — not a sweep. ~11 sampling calls, max_tokens=2048 each.
+Verifies:
+  - effort prefix is accepted and visible in the rendered prompt
   - temperature=0.0 accepted
   - parse_response works and stop reasons/terminations are visible
   - prompt/gen token counts move with effort
-  - repeat cells for seed/temperature behavior
+  - repeat cells for determinism checks
 """
 
 import asyncio
@@ -91,9 +91,9 @@ async def main():
         print(json.dumps({k: v for k, v in r.items() if k != "answer_tail"}))
         print("  tail:", r["answer_tail"][-120:].replace("\n", " "))
 
-    with open("runs/m0_effort_diagnostics.json", "w") as f:
+    with open("runs/effort_diagnostics.json", "w") as f:
         json.dump(results, f, indent=2)
-    print("wrote runs/m0_effort_diagnostics.json")
+    print("wrote runs/effort_diagnostics.json")
 
 
 if __name__ == "__main__":
