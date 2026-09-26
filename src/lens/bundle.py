@@ -49,8 +49,8 @@ class Output(BaseModel):
     grader: GraderRecord = Field(default_factory=GraderRecord)
     est_cost_usd: float | None = None
     error: str | None = None
-    # top-K logprobs per generated position, captured when the API offers them
-    topk_logprobs: list[list[dict[str, float | int]]] | None = None
+    # top-K (token_id, logprob) pairs per generated position
+    topk_logprobs: list[list[tuple[int, float]]] | None = None
 
 
 class Row(BaseModel):

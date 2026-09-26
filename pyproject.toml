@@ -17,6 +17,10 @@ dependencies = [
     "tml-renderers==0.1.0",
     "torch==2.14.0",
     "pydantic>=2.0,<3",
+    # math500 grading (tinker-cookbook[math-rl] deps)
+    "sympy==1.14.0",
+    "pylatexenc==2.11",
+    "math-verify==0.9.0",
 ]
 
 [project.optional-dependencies]
