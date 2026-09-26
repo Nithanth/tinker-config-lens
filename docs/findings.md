@@ -71,6 +71,39 @@ tasks, and everywhere it multiplies token cost — so realized score is
 `reasoning_gain − truncation_loss`, and high effort silently degrades unless
 `max_tokens` is scaled with it.
 
+## Replication: n=600 easy mix + full Inkling on AIME
+
+After reviewer feedback, two upgrades ran (both in `runs_mix600/` and
+`runs_inkling_aime/`):
+
+**Bigger easy set** — gsm8k:500 + math500:100, 32k budget, Inkling-Small:
+
+| effort | acc (n=600) | ~gen tok | failures |
+|--------|-------------|----------|----------|
+| 0.0    | 95.2%       | 143      | 29 wrong |
+| 0.2    | 97.0%       | 177      | 18 wrong |
+| 0.7    | **97.3%**   | 317      | 16 wrong |
+| 0.9    | 96.8%       | 674      | 19 wrong |
+| 0.99   | 96.8%       | 1,263    | 18 wrong, 1 trunc |
+
+0.0→0.2 is a real +1.8pts (paired CI95 [0.002, 0.037]); 0.2→0.99 is flat
+(−0.002, CI95 [−0.015, 0.013]). Tight n kills the anecdote objection.
+Past 0.2 you're paying ~7× more tokens for nothing on this task mix.
+
+**Full Inkling on AIME 2026** (second-model replicate):
+
+| effort | acc | ~gen tok | trunc | **real wrong** |
+|--------|-----|----------|-------|----------------|
+| 0.0    | 50.0% | 6,418  | 0     | **15**         |
+| 0.2    | 80.0% | 3,508  | 0     | **6**          |
+| 0.7    | 93.3% | 5,034  | 0     | **2**          |
+| 0.9    | 86.7% | 11,842 | 3     | **1**          |
+| 0.99   | 86.7% | 17,351 | 4     | **0**          |
+
+The big model replicates the pattern harder: genuine errors fall monotonically
+to **zero at 0.99** — it is never wrong, only out of budget. (Curious sub-note:
+Inkling at 0.0 burns *more* tokens than at 0.2 — verbose flailing, not brevity.)
+
 ## Caveats
 
 - n=150 rows, one sample per cell, temperature 0 — flips are exact, but
@@ -84,5 +117,5 @@ tasks, and everywhere it multiplies token cost — so realized score is
 - AIME 2026 is the decontamination bet — uncontaminated *to our knowledge*;
   we can't audit Inkling's training data directly.
 
-Spend to date: ~$3.30 total (diagnostics + math_mix sweep + 32k re-check +
-AIME 2026 sweep ~$2.19).
+Spend to date: ~$11.9 total (diagnostics + math_mix 150 + 32k re-check +
+Small-AIME + mix600 ~$2.36 + Inkling-AIME ~$6.21).
