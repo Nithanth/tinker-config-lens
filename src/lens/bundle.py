@@ -49,8 +49,11 @@ class Output(BaseModel):
     grader: GraderRecord = Field(default_factory=GraderRecord)
     est_cost_usd: float | None = None
     error: str | None = None
-    # top-K (token_id, logprob) pairs per generated position
+    # top-K (token_id, logprob) pairs per generated position — bulky; stripped
+    # by `lens export-web` in favor of mean_logprob
     topk_logprobs: list[list[tuple[int, float]]] | None = None
+    # mean logprob of the sampled token per generated position (greedy = top-1)
+    mean_logprob: float | None = None
 
 
 class Row(BaseModel):

@@ -18,3 +18,10 @@ build/
 # local-only working docs — never push
 SPEC.md
 DEVIN_AND_SHIP_PLAN.md
+
+# generated artifacts
+runs/.cells/
+runs/sweep_*.json
+web/node_modules/
+web/.next/
+web/out/

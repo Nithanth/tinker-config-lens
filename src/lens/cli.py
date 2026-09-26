@@ -55,6 +55,10 @@ def main() -> int:
     cp.add_argument("bundles", nargs="+")
     cp.add_argument("--out", default=None)
 
+    ex = sub.add_parser("export-web", help="slim bundles for the static web app")
+    ex.add_argument("bundles", nargs="+")
+    ex.add_argument("--out-dir", default="web/public/data")
+
     args = p.parse_args()
     if args.cmd == "verify":
         from lens import verify
@@ -74,6 +78,9 @@ def main() -> int:
     if args.cmd == "compare":
         from lens import compare
         return compare.main(args)
+    if args.cmd == "export-web":
+        from lens import export_web
+        return export_web.main(args)
     return 1
 
 

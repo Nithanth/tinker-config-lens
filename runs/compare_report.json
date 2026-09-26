@@ -1,0 +1,677 @@
+{
+  "n_rows_complete_pairs": 150,
+  "n_exclusions": 0,
+  "exclusions": [],
+  "runs": {
+    "thinkingmachines/Inkling-Small@e0.0": {
+      "accuracy": 0.8733333333333333,
+      "n_scored": 150,
+      "mean_gen_tokens": 166.99333333333334,
+      "est_cost_usd": 0.04328808
+    },
+    "thinkingmachines/Inkling-Small@e0.2": {
+      "accuracy": 0.9666666666666667,
+      "n_scored": 150,
+      "mean_gen_tokens": 249.45333333333335,
+      "est_cost_usd": 0.06127344
+    },
+    "thinkingmachines/Inkling-Small@e0.7": {
+      "accuracy": 0.9666666666666667,
+      "n_scored": 150,
+      "mean_gen_tokens": 475.49333333333334,
+      "est_cost_usd": 0.11009808
+    },
+    "thinkingmachines/Inkling-Small@e0.99": {
+      "accuracy": 0.9133333333333333,
+      "n_scored": 150,
+      "mean_gen_tokens": 1425.62,
+      "est_cost_usd": 0.31532543999999996
+    },
+    "thinkingmachines/Inkling-Small@e0.9": {
+      "accuracy": 0.9466666666666667,
+      "n_scored": 150,
+      "mean_gen_tokens": 1078.3733333333332,
+      "est_cost_usd": 0.24032015999999998
+    }
+  },
+  "pairs": {
+    "thinkingmachines/Inkling-Small@e0.0 vs thinkingmachines/Inkling-Small@e0.2": {
+      "n": 150,
+      "both_correct": 130,
+      "both_wrong": 4,
+      "only_a_correct": 1,
+      "only_b_correct": 15,
+      "acc_diff_mean": -0.09333333333333334,
+      "acc_diff_ci95": [
+        -0.14666666666666667,
+        -0.04666666666666667
+      ],
+      "gen_tok_diff_mean": -82.46,
+      "gen_tok_diff_ci95": [
+        -113.74,
+        -55.06666666666667
+      ],
+      "flips": [
+        {
+          "row_id": "gsm8k_b29f9437da59",
+          "dir": "thinkingmachines/Inkling-Small@e0.2 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "gsm8k_c766c4df3084",
+          "dir": "thinkingmachines/Inkling-Small@e0.2 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "gsm8k_ff69618ab770",
+          "dir": "thinkingmachines/Inkling-Small@e0.2 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "math500_35364df783f3",
+          "dir": "thinkingmachines/Inkling-Small@e0.2 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "math500_3d41e63da266",
+          "dir": "thinkingmachines/Inkling-Small@e0.2 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "math500_452dc872deac",
+          "dir": "thinkingmachines/Inkling-Small@e0.2 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "math500_598cca5b7992",
+          "dir": "thinkingmachines/Inkling-Small@e0.2 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "math500_6f5d00d69787",
+          "dir": "thinkingmachines/Inkling-Small@e0.2 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "math500_7be0b9c6faa7",
+          "dir": "thinkingmachines/Inkling-Small@e0.2 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "math500_85b6e7ea66da",
+          "dir": "thinkingmachines/Inkling-Small@e0.0 correct, thinkingmachines/Inkling-Small@e0.2 wrong"
+        },
+        {
+          "row_id": "math500_860f65d47984",
+          "dir": "thinkingmachines/Inkling-Small@e0.2 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "math500_92f3a353a0d9",
+          "dir": "thinkingmachines/Inkling-Small@e0.2 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "math500_9ceda23394eb",
+          "dir": "thinkingmachines/Inkling-Small@e0.2 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "math500_ab35a62d59cc",
+          "dir": "thinkingmachines/Inkling-Small@e0.2 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "math500_d90424d82492",
+          "dir": "thinkingmachines/Inkling-Small@e0.2 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "math500_ee443bc98899",
+          "dir": "thinkingmachines/Inkling-Small@e0.2 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        }
+      ]
+    },
+    "thinkingmachines/Inkling-Small@e0.0 vs thinkingmachines/Inkling-Small@e0.7": {
+      "n": 150,
+      "both_correct": 129,
+      "both_wrong": 3,
+      "only_a_correct": 2,
+      "only_b_correct": 16,
+      "acc_diff_mean": -0.09333333333333334,
+      "acc_diff_ci95": [
+        -0.14666666666666667,
+        -0.04
+      ],
+      "gen_tok_diff_mean": -308.5,
+      "gen_tok_diff_ci95": [
+        -381.6666666666667,
+        -242.76
+      ],
+      "flips": [
+        {
+          "row_id": "gsm8k_3712c468d681",
+          "dir": "thinkingmachines/Inkling-Small@e0.0 correct, thinkingmachines/Inkling-Small@e0.7 wrong"
+        },
+        {
+          "row_id": "gsm8k_b29f9437da59",
+          "dir": "thinkingmachines/Inkling-Small@e0.7 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "gsm8k_b5b2326a12cd",
+          "dir": "thinkingmachines/Inkling-Small@e0.0 correct, thinkingmachines/Inkling-Small@e0.7 wrong"
+        },
+        {
+          "row_id": "gsm8k_c766c4df3084",
+          "dir": "thinkingmachines/Inkling-Small@e0.7 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "gsm8k_ff69618ab770",
+          "dir": "thinkingmachines/Inkling-Small@e0.7 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "math500_295567c67900",
+          "dir": "thinkingmachines/Inkling-Small@e0.7 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "math500_35364df783f3",
+          "dir": "thinkingmachines/Inkling-Small@e0.7 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "math500_3d41e63da266",
+          "dir": "thinkingmachines/Inkling-Small@e0.7 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "math500_452dc872deac",
+          "dir": "thinkingmachines/Inkling-Small@e0.7 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "math500_598cca5b7992",
+          "dir": "thinkingmachines/Inkling-Small@e0.7 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "math500_6f5d00d69787",
+          "dir": "thinkingmachines/Inkling-Small@e0.7 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "math500_7be0b9c6faa7",
+          "dir": "thinkingmachines/Inkling-Small@e0.7 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "math500_860f65d47984",
+          "dir": "thinkingmachines/Inkling-Small@e0.7 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "math500_92f3a353a0d9",
+          "dir": "thinkingmachines/Inkling-Small@e0.7 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "math500_9ceda23394eb",
+          "dir": "thinkingmachines/Inkling-Small@e0.7 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "math500_ab35a62d59cc",
+          "dir": "thinkingmachines/Inkling-Small@e0.7 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "math500_d90424d82492",
+          "dir": "thinkingmachines/Inkling-Small@e0.7 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "math500_ee443bc98899",
+          "dir": "thinkingmachines/Inkling-Small@e0.7 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        }
+      ]
+    },
+    "thinkingmachines/Inkling-Small@e0.0 vs thinkingmachines/Inkling-Small@e0.99": {
+      "n": 150,
+      "both_correct": 124,
+      "both_wrong": 6,
+      "only_a_correct": 7,
+      "only_b_correct": 13,
+      "acc_diff_mean": -0.04,
+      "acc_diff_ci95": [
+        -0.1,
+        0.02
+      ],
+      "gen_tok_diff_mean": -1258.6266666666668,
+      "gen_tok_diff_ci95": [
+        -1629.0,
+        -913.3333333333334
+      ],
+      "flips": [
+        {
+          "row_id": "gsm8k_3712c468d681",
+          "dir": "thinkingmachines/Inkling-Small@e0.0 correct, thinkingmachines/Inkling-Small@e0.99 wrong"
+        },
+        {
+          "row_id": "gsm8k_912aea753801",
+          "dir": "thinkingmachines/Inkling-Small@e0.0 correct, thinkingmachines/Inkling-Small@e0.99 wrong"
+        },
+        {
+          "row_id": "gsm8k_b29f9437da59",
+          "dir": "thinkingmachines/Inkling-Small@e0.99 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "gsm8k_b5b2326a12cd",
+          "dir": "thinkingmachines/Inkling-Small@e0.0 correct, thinkingmachines/Inkling-Small@e0.99 wrong"
+        },
+        {
+          "row_id": "gsm8k_c766c4df3084",
+          "dir": "thinkingmachines/Inkling-Small@e0.99 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "gsm8k_ff69618ab770",
+          "dir": "thinkingmachines/Inkling-Small@e0.99 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "math500_295567c67900",
+          "dir": "thinkingmachines/Inkling-Small@e0.99 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "math500_35364df783f3",
+          "dir": "thinkingmachines/Inkling-Small@e0.99 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "math500_3d41e63da266",
+          "dir": "thinkingmachines/Inkling-Small@e0.99 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "math500_452dc872deac",
+          "dir": "thinkingmachines/Inkling-Small@e0.99 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "math500_598cca5b7992",
+          "dir": "thinkingmachines/Inkling-Small@e0.99 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "math500_64925ab751a4",
+          "dir": "thinkingmachines/Inkling-Small@e0.0 correct, thinkingmachines/Inkling-Small@e0.99 wrong"
+        },
+        {
+          "row_id": "math500_6f5d00d69787",
+          "dir": "thinkingmachines/Inkling-Small@e0.99 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "math500_729aab2d0668",
+          "dir": "thinkingmachines/Inkling-Small@e0.0 correct, thinkingmachines/Inkling-Small@e0.99 wrong"
+        },
+        {
+          "row_id": "math500_7be0b9c6faa7",
+          "dir": "thinkingmachines/Inkling-Small@e0.99 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "math500_893f6d221caf",
+          "dir": "thinkingmachines/Inkling-Small@e0.0 correct, thinkingmachines/Inkling-Small@e0.99 wrong"
+        },
+        {
+          "row_id": "math500_92f3a353a0d9",
+          "dir": "thinkingmachines/Inkling-Small@e0.99 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "math500_9ceda23394eb",
+          "dir": "thinkingmachines/Inkling-Small@e0.99 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "math500_d2f5328bff10",
+          "dir": "thinkingmachines/Inkling-Small@e0.0 correct, thinkingmachines/Inkling-Small@e0.99 wrong"
+        },
+        {
+          "row_id": "math500_ee443bc98899",
+          "dir": "thinkingmachines/Inkling-Small@e0.99 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        }
+      ]
+    },
+    "thinkingmachines/Inkling-Small@e0.0 vs thinkingmachines/Inkling-Small@e0.9": {
+      "n": 150,
+      "both_correct": 127,
+      "both_wrong": 4,
+      "only_a_correct": 4,
+      "only_b_correct": 15,
+      "acc_diff_mean": -0.07333333333333333,
+      "acc_diff_ci95": [
+        -0.12666666666666668,
+        -0.02
+      ],
+      "gen_tok_diff_mean": -911.38,
+      "gen_tok_diff_ci95": [
+        -1190.2933333333333,
+        -663.6666666666666
+      ],
+      "flips": [
+        {
+          "row_id": "gsm8k_3712c468d681",
+          "dir": "thinkingmachines/Inkling-Small@e0.0 correct, thinkingmachines/Inkling-Small@e0.9 wrong"
+        },
+        {
+          "row_id": "gsm8k_b29f9437da59",
+          "dir": "thinkingmachines/Inkling-Small@e0.9 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "gsm8k_b5b2326a12cd",
+          "dir": "thinkingmachines/Inkling-Small@e0.0 correct, thinkingmachines/Inkling-Small@e0.9 wrong"
+        },
+        {
+          "row_id": "gsm8k_c766c4df3084",
+          "dir": "thinkingmachines/Inkling-Small@e0.9 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "gsm8k_ff69618ab770",
+          "dir": "thinkingmachines/Inkling-Small@e0.9 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "math500_295567c67900",
+          "dir": "thinkingmachines/Inkling-Small@e0.9 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "math500_35364df783f3",
+          "dir": "thinkingmachines/Inkling-Small@e0.9 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "math500_3d41e63da266",
+          "dir": "thinkingmachines/Inkling-Small@e0.9 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "math500_452dc872deac",
+          "dir": "thinkingmachines/Inkling-Small@e0.9 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "math500_598cca5b7992",
+          "dir": "thinkingmachines/Inkling-Small@e0.9 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "math500_6f5d00d69787",
+          "dir": "thinkingmachines/Inkling-Small@e0.9 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "math500_729aab2d0668",
+          "dir": "thinkingmachines/Inkling-Small@e0.0 correct, thinkingmachines/Inkling-Small@e0.9 wrong"
+        },
+        {
+          "row_id": "math500_7be0b9c6faa7",
+          "dir": "thinkingmachines/Inkling-Small@e0.9 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "math500_860f65d47984",
+          "dir": "thinkingmachines/Inkling-Small@e0.9 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "math500_893f6d221caf",
+          "dir": "thinkingmachines/Inkling-Small@e0.0 correct, thinkingmachines/Inkling-Small@e0.9 wrong"
+        },
+        {
+          "row_id": "math500_92f3a353a0d9",
+          "dir": "thinkingmachines/Inkling-Small@e0.9 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "math500_9ceda23394eb",
+          "dir": "thinkingmachines/Inkling-Small@e0.9 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "math500_d90424d82492",
+          "dir": "thinkingmachines/Inkling-Small@e0.9 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        },
+        {
+          "row_id": "math500_ee443bc98899",
+          "dir": "thinkingmachines/Inkling-Small@e0.9 correct, thinkingmachines/Inkling-Small@e0.0 wrong"
+        }
+      ]
+    },
+    "thinkingmachines/Inkling-Small@e0.2 vs thinkingmachines/Inkling-Small@e0.7": {
+      "n": 150,
+      "both_correct": 143,
+      "both_wrong": 3,
+      "only_a_correct": 2,
+      "only_b_correct": 2,
+      "acc_diff_mean": 0.0,
+      "acc_diff_ci95": [
+        -0.02666666666666667,
+        0.02666666666666667
+      ],
+      "gen_tok_diff_mean": -226.04,
+      "gen_tok_diff_ci95": [
+        -280.84,
+        -176.48
+      ],
+      "flips": [
+        {
+          "row_id": "gsm8k_3712c468d681",
+          "dir": "thinkingmachines/Inkling-Small@e0.2 correct, thinkingmachines/Inkling-Small@e0.7 wrong"
+        },
+        {
+          "row_id": "gsm8k_b5b2326a12cd",
+          "dir": "thinkingmachines/Inkling-Small@e0.2 correct, thinkingmachines/Inkling-Small@e0.7 wrong"
+        },
+        {
+          "row_id": "math500_295567c67900",
+          "dir": "thinkingmachines/Inkling-Small@e0.7 correct, thinkingmachines/Inkling-Small@e0.2 wrong"
+        },
+        {
+          "row_id": "math500_85b6e7ea66da",
+          "dir": "thinkingmachines/Inkling-Small@e0.7 correct, thinkingmachines/Inkling-Small@e0.2 wrong"
+        }
+      ]
+    },
+    "thinkingmachines/Inkling-Small@e0.2 vs thinkingmachines/Inkling-Small@e0.99": {
+      "n": 150,
+      "both_correct": 135,
+      "both_wrong": 3,
+      "only_a_correct": 10,
+      "only_b_correct": 2,
+      "acc_diff_mean": 0.05333333333333334,
+      "acc_diff_ci95": [
+        0.013333333333333334,
+        0.1
+      ],
+      "gen_tok_diff_mean": -1176.1666666666667,
+      "gen_tok_diff_ci95": [
+        -1532.88,
+        -848.3333333333334
+      ],
+      "flips": [
+        {
+          "row_id": "gsm8k_3712c468d681",
+          "dir": "thinkingmachines/Inkling-Small@e0.2 correct, thinkingmachines/Inkling-Small@e0.99 wrong"
+        },
+        {
+          "row_id": "gsm8k_912aea753801",
+          "dir": "thinkingmachines/Inkling-Small@e0.2 correct, thinkingmachines/Inkling-Small@e0.99 wrong"
+        },
+        {
+          "row_id": "gsm8k_b5b2326a12cd",
+          "dir": "thinkingmachines/Inkling-Small@e0.2 correct, thinkingmachines/Inkling-Small@e0.99 wrong"
+        },
+        {
+          "row_id": "math500_295567c67900",
+          "dir": "thinkingmachines/Inkling-Small@e0.99 correct, thinkingmachines/Inkling-Small@e0.2 wrong"
+        },
+        {
+          "row_id": "math500_64925ab751a4",
+          "dir": "thinkingmachines/Inkling-Small@e0.2 correct, thinkingmachines/Inkling-Small@e0.99 wrong"
+        },
+        {
+          "row_id": "math500_729aab2d0668",
+          "dir": "thinkingmachines/Inkling-Small@e0.2 correct, thinkingmachines/Inkling-Small@e0.99 wrong"
+        },
+        {
+          "row_id": "math500_85b6e7ea66da",
+          "dir": "thinkingmachines/Inkling-Small@e0.99 correct, thinkingmachines/Inkling-Small@e0.2 wrong"
+        },
+        {
+          "row_id": "math500_860f65d47984",
+          "dir": "thinkingmachines/Inkling-Small@e0.2 correct, thinkingmachines/Inkling-Small@e0.99 wrong"
+        },
+        {
+          "row_id": "math500_893f6d221caf",
+          "dir": "thinkingmachines/Inkling-Small@e0.2 correct, thinkingmachines/Inkling-Small@e0.99 wrong"
+        },
+        {
+          "row_id": "math500_ab35a62d59cc",
+          "dir": "thinkingmachines/Inkling-Small@e0.2 correct, thinkingmachines/Inkling-Small@e0.99 wrong"
+        },
+        {
+          "row_id": "math500_d2f5328bff10",
+          "dir": "thinkingmachines/Inkling-Small@e0.2 correct, thinkingmachines/Inkling-Small@e0.99 wrong"
+        },
+        {
+          "row_id": "math500_d90424d82492",
+          "dir": "thinkingmachines/Inkling-Small@e0.2 correct, thinkingmachines/Inkling-Small@e0.99 wrong"
+        }
+      ]
+    },
+    "thinkingmachines/Inkling-Small@e0.2 vs thinkingmachines/Inkling-Small@e0.9": {
+      "n": 150,
+      "both_correct": 140,
+      "both_wrong": 3,
+      "only_a_correct": 5,
+      "only_b_correct": 2,
+      "acc_diff_mean": 0.02,
+      "acc_diff_ci95": [
+        -0.013333333333333334,
+        0.05333333333333334
+      ],
+      "gen_tok_diff_mean": -828.92,
+      "gen_tok_diff_ci95": [
+        -1089.02,
+        -596.2933333333333
+      ],
+      "flips": [
+        {
+          "row_id": "gsm8k_3712c468d681",
+          "dir": "thinkingmachines/Inkling-Small@e0.2 correct, thinkingmachines/Inkling-Small@e0.9 wrong"
+        },
+        {
+          "row_id": "gsm8k_b5b2326a12cd",
+          "dir": "thinkingmachines/Inkling-Small@e0.2 correct, thinkingmachines/Inkling-Small@e0.9 wrong"
+        },
+        {
+          "row_id": "math500_295567c67900",
+          "dir": "thinkingmachines/Inkling-Small@e0.9 correct, thinkingmachines/Inkling-Small@e0.2 wrong"
+        },
+        {
+          "row_id": "math500_729aab2d0668",
+          "dir": "thinkingmachines/Inkling-Small@e0.2 correct, thinkingmachines/Inkling-Small@e0.9 wrong"
+        },
+        {
+          "row_id": "math500_85b6e7ea66da",
+          "dir": "thinkingmachines/Inkling-Small@e0.9 correct, thinkingmachines/Inkling-Small@e0.2 wrong"
+        },
+        {
+          "row_id": "math500_893f6d221caf",
+          "dir": "thinkingmachines/Inkling-Small@e0.2 correct, thinkingmachines/Inkling-Small@e0.9 wrong"
+        },
+        {
+          "row_id": "math500_ab35a62d59cc",
+          "dir": "thinkingmachines/Inkling-Small@e0.2 correct, thinkingmachines/Inkling-Small@e0.9 wrong"
+        }
+      ]
+    },
+    "thinkingmachines/Inkling-Small@e0.7 vs thinkingmachines/Inkling-Small@e0.99": {
+      "n": 150,
+      "both_correct": 137,
+      "both_wrong": 5,
+      "only_a_correct": 8,
+      "only_b_correct": 0,
+      "acc_diff_mean": 0.05333333333333334,
+      "acc_diff_ci95": [
+        0.02,
+        0.09333333333333334
+      ],
+      "gen_tok_diff_mean": -950.1266666666667,
+      "gen_tok_diff_ci95": [
+        -1266.1666666666667,
+        -657.4533333333334
+      ],
+      "flips": [
+        {
+          "row_id": "gsm8k_912aea753801",
+          "dir": "thinkingmachines/Inkling-Small@e0.7 correct, thinkingmachines/Inkling-Small@e0.99 wrong"
+        },
+        {
+          "row_id": "math500_64925ab751a4",
+          "dir": "thinkingmachines/Inkling-Small@e0.7 correct, thinkingmachines/Inkling-Small@e0.99 wrong"
+        },
+        {
+          "row_id": "math500_729aab2d0668",
+          "dir": "thinkingmachines/Inkling-Small@e0.7 correct, thinkingmachines/Inkling-Small@e0.99 wrong"
+        },
+        {
+          "row_id": "math500_860f65d47984",
+          "dir": "thinkingmachines/Inkling-Small@e0.7 correct, thinkingmachines/Inkling-Small@e0.99 wrong"
+        },
+        {
+          "row_id": "math500_893f6d221caf",
+          "dir": "thinkingmachines/Inkling-Small@e0.7 correct, thinkingmachines/Inkling-Small@e0.99 wrong"
+        },
+        {
+          "row_id": "math500_ab35a62d59cc",
+          "dir": "thinkingmachines/Inkling-Small@e0.7 correct, thinkingmachines/Inkling-Small@e0.99 wrong"
+        },
+        {
+          "row_id": "math500_d2f5328bff10",
+          "dir": "thinkingmachines/Inkling-Small@e0.7 correct, thinkingmachines/Inkling-Small@e0.99 wrong"
+        },
+        {
+          "row_id": "math500_d90424d82492",
+          "dir": "thinkingmachines/Inkling-Small@e0.7 correct, thinkingmachines/Inkling-Small@e0.99 wrong"
+        }
+      ]
+    },
+    "thinkingmachines/Inkling-Small@e0.7 vs thinkingmachines/Inkling-Small@e0.9": {
+      "n": 150,
+      "both_correct": 142,
+      "both_wrong": 5,
+      "only_a_correct": 3,
+      "only_b_correct": 0,
+      "acc_diff_mean": 0.02,
+      "acc_diff_ci95": [
+        0.0,
+        0.04666666666666667
+      ],
+      "gen_tok_diff_mean": -602.88,
+      "gen_tok_diff_ci95": [
+        -817.4933333333333,
+        -410.72
+      ],
+      "flips": [
+        {
+          "row_id": "math500_729aab2d0668",
+          "dir": "thinkingmachines/Inkling-Small@e0.7 correct, thinkingmachines/Inkling-Small@e0.9 wrong"
+        },
+        {
+          "row_id": "math500_893f6d221caf",
+          "dir": "thinkingmachines/Inkling-Small@e0.7 correct, thinkingmachines/Inkling-Small@e0.9 wrong"
+        },
+        {
+          "row_id": "math500_ab35a62d59cc",
+          "dir": "thinkingmachines/Inkling-Small@e0.7 correct, thinkingmachines/Inkling-Small@e0.9 wrong"
+        }
+      ]
+    },
+    "thinkingmachines/Inkling-Small@e0.99 vs thinkingmachines/Inkling-Small@e0.9": {
+      "n": 150,
+      "both_correct": 137,
+      "both_wrong": 8,
+      "only_a_correct": 0,
+      "only_b_correct": 5,
+      "acc_diff_mean": -0.03333333333333333,
+      "acc_diff_ci95": [
+        -0.06666666666666667,
+        -0.006666666666666667
+      ],
+      "gen_tok_diff_mean": 347.24666666666667,
+      "gen_tok_diff_ci95": [
+        185.23333333333332,
+        526.4333333333333
+      ],
+      "flips": [
+        {
+          "row_id": "gsm8k_912aea753801",
+          "dir": "thinkingmachines/Inkling-Small@e0.9 correct, thinkingmachines/Inkling-Small@e0.99 wrong"
+        },
+        {
+          "row_id": "math500_64925ab751a4",
+          "dir": "thinkingmachines/Inkling-Small@e0.9 correct, thinkingmachines/Inkling-Small@e0.99 wrong"
+        },
+        {
+          "row_id": "math500_860f65d47984",
+          "dir": "thinkingmachines/Inkling-Small@e0.9 correct, thinkingmachines/Inkling-Small@e0.99 wrong"
+        },
+        {
+          "row_id": "math500_d2f5328bff10",
+          "dir": "thinkingmachines/Inkling-Small@e0.9 correct, thinkingmachines/Inkling-Small@e0.99 wrong"
+        },
+        {
+          "row_id": "math500_d90424d82492",
+          "dir": "thinkingmachines/Inkling-Small@e0.9 correct, thinkingmachines/Inkling-Small@e0.99 wrong"
+        }
+      ]
+    }
+  }
+}

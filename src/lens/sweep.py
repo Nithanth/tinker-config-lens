@@ -105,6 +105,15 @@ async def _run_cell(client, renderer, args, row, effort, cache_dir: Path):
     text = get_text_content(msg)
     in_p, out_p = PRICES[args.model]
     gen = len(seq.tokens)
+    # A grader crash on unparseable output is a wrong answer (native benchmarks
+    # use failed_parse_reward=0.0), not an exclusion — keep the output and
+    # name the failure in the rationale so the atlas can show it.
+    try:
+        verdict = _grade(row["grader"], text, row["gold"])
+        grade_note = None
+    except Exception as ge:
+        verdict = 0.0
+        grade_note = f"grader_error: {type(ge).__name__}: {ge}"
     cell = {
         "row_id": row["row_id"],
         "effort": effort,
@@ -114,7 +123,8 @@ async def _run_cell(client, renderer, args, row, effort, cache_dir: Path):
         "gen_tokens": gen,
         "stop_reason": seq.stop_reason,
         "parse_termination": term.value,
-        "verdict": _grade(row["grader"], text, row["gold"]),
+        "verdict": verdict,
+        "grade_note": grade_note,
         "est_cost_usd": len(prompt_toks) / 1e6 * in_p + gen / 1e6 * out_p,
         "topk_logprobs": seq.topk_logprobs,
         "error": None,
@@ -256,7 +266,8 @@ async def run(args) -> int:
                             stop_reason=c.get("stop_reason"),
                             grader=GraderRecord(
                                 verdict=c.get("verdict"),
-                                rationale=c.get("parse_termination"),
+                                rationale=c.get("grade_note")
+                                or c.get("parse_termination"),
                             ),
                             est_cost_usd=c.get("est_cost_usd"),
                             error=c.get("error"),
